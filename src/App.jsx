@@ -7,6 +7,7 @@ function App() {
   const [isnumber,setIsNumber] = useState(false);
   const [ischaracter,setIsCharacter] = useState(false);
   const [issymbol,setIsSymbol] = useState(false);
+  const [isemojis,setIsEmojis] = useState(false);
   const [generated,setGenerated] = useState(false);
   
 
@@ -26,10 +27,12 @@ function App() {
   const characterCheckBox =(e)=>{
     setIsCharacter(!ischaracter);
   }
-
+  const emojisCheckBox =(e)=>{
+    setIsEmojis(!isemojis);
+  }
   const generatePassword =(event)=>{
     event.preventDefault();
-    if(!ischaracter && !isnumber && !issymbol)
+    if(!ischaracter && !isnumber && !issymbol && !isemojis)
     {
       alert("atleast one should be selected");
     }
@@ -46,7 +49,7 @@ function App() {
   console.log(selectedNumber);
   return (
     <>
-      {generated ? (      <Password ischaracter={ischaracter} isnumber={isnumber} issymbol={issymbol} selectedNumber={selectedNumber}/>
+      {generated ? (      <Password ischaracter={ischaracter} isnumber={isnumber} issymbol={issymbol} selectedNumber={selectedNumber} isemojis={isemojis}/>
 ):
       <form className="center-form" onSubmit={generatePassword}>
         <h2>Password Generator</h2>
@@ -58,6 +61,10 @@ function App() {
         <br />
         <input type="checkbox" id="characters" name="characters" onChange={characterCheckBox}/>
         <label htmlFor='characters'>Characters</label>
+        <br />
+        <input type="checkbox" id="emojis" name="emojis" onChange={emojisCheckBox}/>
+        <label htmlFor='emojis'>Emojis</label>
+
         <br />
         <br />
           <input
